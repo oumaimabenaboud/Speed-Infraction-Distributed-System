@@ -16,6 +16,7 @@ Speed Infractions Distributed System is a microservices-based project aimed at m
 8. [Front-end application](#front-end-application)
 9. [Securing the system](#securing-the-system)
 10. [Docker deployment](#docker-deployment)
+11. [Demo video](#demo-video)
 
 ## Technical Architecture of the project
 
@@ -123,4 +124,6 @@ Securing the system with the Keycloak authentication system.
 ## Docker deployment
 
 The `docker-compose.yml` script to deploy the distributed system in Docker containers.
+
+## Demo Video
 
