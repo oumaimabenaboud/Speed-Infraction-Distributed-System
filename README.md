@@ -112,6 +112,9 @@ Front-end application with Angular.
 
 Securing the system with the Keycloak authentication system.
 
+| Login Page | Home Page |
+| --- | --- | 
+| ![Capture d'écran 2023-07-01 224136](https://github.com/oumaimabenaboud/Speed-Infraction-Distributed-System/assets/120368654/6af785c6-baa6-41bf-9921-f4ab0398e9a3) | ![Capture d'écran 2023-07-01 233904](https://github.com/oumaimabenaboud/Speed-Infraction-Distributed-System/assets/120368654/43b25d4c-e2ca-4f98-8803-58c2d8ec00da) |
 
 
 ## Docker deployment
