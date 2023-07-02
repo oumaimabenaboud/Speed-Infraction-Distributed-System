@@ -5,6 +5,7 @@ services:
     build: ./eureka-discovery
     ports:
       - 8761:8761
+
   gateway-service:
     container_name: gateway-service
     build: ./gateway-service
@@ -12,6 +13,7 @@ services:
       - 8888:8888
     depends_on:
       - eureka-discovery
+
   immatriculation-service:
     container_name: immatriculation-service
     build: ./immatriculation-service
@@ -20,6 +22,7 @@ services:
       - 9999:9999
     depends_on:
       - eureka-discovery
+
   infraction-service:
     container_name: infraction-service
     build: ./infraction-service
@@ -27,6 +30,7 @@ services:
       - 8082:8082
     depends_on:
       - eureka-discovery
+
   radar-service:
     container_name: radar-service
     build: ./radar-service
@@ -35,3 +39,9 @@ services:
       - 9998:9998
     depends_on:
       - eureka-discovery
+
+  radar-web-app:
+    container_name: radar-web-app
+    build: ./radar-web-app
+    ports:
+      - 4200:4200
