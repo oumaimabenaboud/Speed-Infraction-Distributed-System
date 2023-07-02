@@ -1,0 +1,95 @@
+<div class="container">
+  <br>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-start">
+      <h4><i class="bi bi-car-front-fill"></i> Vehicles </h4>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-outline-success custom-button"(click)="openForm()"><i class="bi bi-plus-circle"></i> Add Vehicle</button>
+    </div>
+  </div>
+  <br>
+  <table class="table" *ngIf="vehicles">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Registration plate number</th>
+      <th>Brand</th>
+      <th>Tax Horsepower</th>
+      <th>Model</th>
+      <th>Owner Details</th>
+      <th>Delete Vehicle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let v of vehicles">
+      <td>{{v.id}}</td>
+      <td>{{v.registration_plate_number}}</td>
+      <td>{{v.brand}}</td>
+      <td>{{v.tax_horsepower}}</td>
+      <td>{{v.vehicle_model}}</td>
+      <td>
+        <button class ="btn detail-button"(click)="getVehicleDetail(v)"> <i class="bi bi-search"></i></button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="deleteVehicle(v.id)"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    </div>
+
+      <div class="popup card" *ngIf="isFormOpen">
+        <div class="card-body">
+          <h4>Add New Vehicle</h4>
+          <form class="row" [formGroup]="newVehicleForm" (ngSubmit)="saveNewVehicle()">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="registration_plate_number1">Registration plate number</label>
+                <input type="text" class="form-control" id="registration_plate_number1" formControlName="registration_plate_number">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="brand1">Brand</label>
+                <input type="text" class="form-control" id="brand1" formControlName="brand">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="tax_horsepower1">Tax Horsepower</label>
+                <input type="text" class="form-control" id="tax_horsepower1" formControlName="tax_horsepower">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="vehicle_model1">Model</label>
+                <input type="text" class="form-control" id="vehicle_model1" formControlName="vehicle_model">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ownerName">Owner name</label>
+                <input type="text" class="form-control" id="ownerName" formControlName="ownerName">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ownerBirthDate">Birthdate</label>
+                <input type="text" class="form-control" id="ownerBirthDate" formControlName="ownerBirthdate">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="email1">Email</label>
+                <input type="text" class="form-control" id="email1" formControlName="ownerEmail">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer bg-transparent">
+          <button class="btn btn-outline-primary" (click)="closeForm()"><i class="bi bi-x-lg"></i> Close</button>
+          <button class="btn btn-outline-success ms-3" (click)="saveNewVehicle()"><i class="bi bi-plus-circle"></i> Add</button>
+        </div>
+</div>
+

@@ -1,0 +1,68 @@
+<div class="container">
+  <br>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-start">
+      <h4><i class="bi bi-speedometer2"></i> Radars </h4>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-outline-success custom-button" (click)="openForm()"><i class="bi bi-plus-circle"></i> Add Radar</button>
+    </div>
+  </div>
+  <br>
+  <table class="table" *ngIf="radars">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Radar's Max Speed</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Details</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let r of radars">
+      <td>{{r.id}}</td>
+      <td>{{r.radar_maxSpeed}}</td>
+      <td>{{r.longitude}}</td>
+      <td>{{r.latitude}}</td>
+      <td>
+        <button class ="btn detail-button" (click)="getRadarinfractions(r.id)"> <i class="bi bi-search"></i></button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger"(click)="deleteRadar(r.id)"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="popup card" *ngIf="isFormOpen">
+    <div class="card-body">
+      <h4>Add new radar</h4>
+      <form class="row" [formGroup]="newRadarForm" (ngSubmit)="saveNewRadar()">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="radar_maxSpeed">Maximum Speed</label>
+            <input type="text" class="form-control" id="radar_maxSpeed" formControlName="radar_maxSpeed">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input type="text" class="form-control" id="longitude" formControlName="longitude">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input type="text" class="form-control" id="latitude" formControlName="latitude">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer bg-transparent">
+      <button class="btn btn-outline-primary" (click)="closeForm()"><i class="bi bi-x-lg"></i> Close</button>
+      <button class="btn btn-outline-success ms-3" (click)="saveNewRadar()"><i class="bi bi-plus-circle"></i> Add</button>
+    </div>
+</div>
+</div>

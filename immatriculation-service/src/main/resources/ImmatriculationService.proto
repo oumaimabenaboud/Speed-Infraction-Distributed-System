@@ -1,0 +1,73 @@
+syntax ="proto3";
+option java_package="org.sid.immatriculationservice.web.grpc.stub";
+
+// Define the message types
+message Vehicle {
+  int32 id = 1;
+  int32 registration_plate_number = 2;
+  string brand = 3;
+  int32 tax_horsepower = 4;
+  int32 vehicle_model = 5;
+  Owner owner = 6;
+}
+
+message Owner {
+  int32 id = 1;
+  string name = 2;
+  string birthDate = 3;
+  string email = 4;
+  repeated Vehicle vehicles = 5;
+}
+
+service ImmatriculationGrpcService {
+  rpc getVehicle(VehicleId) returns (Vehicle);
+  rpc getListVehicles(Empty) returns ( GetAllVehiclesResponse);
+  rpc saveVehicle(VehicleRequest) returns (Vehicle);
+  rpc updateVehicle(VehicleUpdateRequest) returns (Vehicle);
+  rpc deleteVehicle(VehicleId) returns (Empty);
+  rpc getOwner(OwnerId) returns (Owner);
+  rpc getListOwners(Empty) returns ( GetAllOwnersResponse);
+  rpc saveOwner(OwnerRequest) returns (Owner);
+  rpc updateOwner(OwnerUpdateRequest) returns (Owner);
+  rpc deleteOwner(OwnerId) returns (Empty);
+
+}
+message Empty{}
+message VehicleId{
+  int32 id = 1;
+}
+message OwnerId{
+  int32 id = 1;
+}
+message GetAllVehiclesResponse{
+  repeated  Vehicle vehicles = 1;
+}
+message GetAllOwnersResponse{
+  repeated  Owner owners = 1;
+}
+message OwnerRequest {
+  string name = 1;
+  string email = 3;
+  string birthDate = 2;
+}
+
+message VehicleRequest {
+  int32 registration_plate_number = 1;
+  string brand = 2;
+  int32 tax_horsepower = 3;
+  int32 vehicle_model = 4;
+}
+message OwnerUpdateRequest{
+  int32 id = 1;
+  string name = 2;
+  string birthDate = 3;
+  string email = 4;
+}
+
+message VehicleUpdateRequest{
+  int32 id = 1;
+  int32 registration_plate_number = 2;
+  string brand = 3;
+  int32 tax_horsepower = 4;
+  int32 vehicle_model = 5;
+}

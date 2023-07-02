@@ -1,0 +1,62 @@
+ <body>
+    <div class="container"*ngIf="infractiondetail">
+      <br>
+      <h4 class="label custom-label"><i class="bi bi-clipboard2-x-fill"></i> Details of infraction n°{{infractiondetail.id}}</h4>
+      <br>
+      <div class="row">
+        <div class="col">
+          <div class="list-group">
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Infraction Date:</label>
+              <div class="list-group-item-value">{{infractiondetail.date}}</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Vehicle's Speed:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle_speed | number:'1.0-0'}} Km/h</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Registration Plate Number:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.registration_plate_number}}</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Tax Horsepower:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.tax_horsepower}}</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Owner's Name:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.owner.name}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="list-group">
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Fine Amount:</label>
+              <div class="list-group-item-value">{{infractiondetail.fine_amount | number:'1.0-0'}} Dhs</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Radar's Maximum Speed:</label>
+              <div class="list-group-item-value">{{infractiondetail.radar_maxSpeed | number:'1.0-0'}} Km/h</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Brand:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.brand}}</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Vehicle Model:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.vehicle_model}}</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Owner's Birthdate:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.owner.birthDate}}</div>
+            </div>
+            <div class="list-group-item">
+              <label class="list-group-item-label bold-label">Owner's Email:</label>
+              <div class="list-group-item-value">{{infractiondetail.vehicle.owner.email}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </body>
+

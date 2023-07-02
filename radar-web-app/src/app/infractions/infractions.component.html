@@ -1,0 +1,69 @@
+<div class="container">
+  <br>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-start">
+      <h4><i class="bi bi-database-fill-slash"></i> Infractions </h4>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-outline-success custom-button" (click)="openForm()"><i class="bi bi-plus-circle"></i> Add Infraction</button>
+    </div>
+  </div>
+  <br>
+  <table class="table" *ngIf="infractions">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Vehicle's speed</th>
+      <th>Radar's Maximum Speed</th>
+      <th>Fine Amount</th>
+      <th>Details</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of infractions">
+      <td>{{i.id}}</td>
+      <td>{{i.date}}</td>
+      <td>{{i.vehicle_speed | number:'1.0-0'}} Km/h</td>
+      <td>{{i.radar_maxSpeed | number:'1.0-0'}} Km/h</td>
+      <td>{{i.fine_amount | number:'1.0-0'}} Dhs </td>
+      <td>
+        <button class ="btn detail-button" (click)="getInfractionDetail(i)"> <i class="bi bi-search"></i></button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="deleteInfraction(i.id)"><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="popup card" *ngIf="isFormOpen">
+    <div class="card-body">
+      <h4>Add new infraction</h4>
+      <form class="row" [formGroup]="newInfractionForm" (ngSubmit)="saveNewInfraction()">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="idRadar">Radar's Id</label>
+            <input type="text" class="form-control" id="idRadar" formControlName="radarId">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="idVehicle">Vehicle's Id</label>
+            <input type="text" class="form-control" id="idVehicle" formControlName="vehicleId">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicleSpeed1">Vehicle's speed</label>
+            <input type="text" class="form-control" id="vehicleSpeed1" formControlName="vehicleSpeed">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer bg-transparent">
+      <button class="btn btn-outline-primary" (click)="closeForm()"><i class="bi bi-x-lg"></i> Close</button>
+      <button class="btn btn-outline-success ms-3" (click)="saveNewInfraction()"><i class="bi bi-plus-circle"></i> Add</button>
+    </div>
+</div>
+</div>

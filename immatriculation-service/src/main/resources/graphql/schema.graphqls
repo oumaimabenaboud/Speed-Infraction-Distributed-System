@@ -1,0 +1,43 @@
+
+type Vehicle {
+    id: Int,
+    registration_plate_number: Int,
+    brand: String,
+    tax_horsepower: Int,
+    vehicle_model: Int,
+    owner: Owner
+}
+input VehicleRequestDTO {
+    registration_plate_number: Int,
+    brand: String,
+    tax_horsepower: Int,
+    vehicle_model: Int
+}
+
+type Owner {
+    id: Int,
+    name: String,
+    birthDate: String,
+    email: String,
+    vehicles:[Vehicle]
+}
+input OwnerRequestDTO {
+    name: String,
+    email: String,
+    birthDate: String
+}
+type Query {
+    vehicleById(id: Int): Vehicle
+    vehiclesList: [Vehicle]
+    ownerById(id: Int): Owner
+    ownersList:[Owner]
+}
+type Mutation {
+    saveVehicle(vehicleRequest: VehicleRequestDTO): Vehicle,
+    updateVehicle(id: ID, vehicleRequest: VehicleRequestDTO): Vehicle,
+    deleteVehicle(id: ID): Boolean,
+    saveOwner(ownerRequest: OwnerRequestDTO): Owner,
+    updateOwner(id: ID, ownerRequest: OwnerRequestDTO): Owner,
+    deleteOwner(id: ID): Boolean,
+    addVehicleToOwner(ownerId: ID, vehicleId: ID): Vehicle
+}

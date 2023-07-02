@@ -1,0 +1,50 @@
+syntax ="proto3";
+option java_package="org.sid.stub";
+
+message Radar{
+  int32 id = 1;
+  double radar_maxSpeed = 2;
+  double latitude = 3;
+  double  longitude= 4;
+}
+message Infraction{
+  int32 id = 1;
+  string date = 2;
+  int32 radarId = 3;
+  Radar radar = 4;
+  int32 vehicleId = 5;
+  Vehicle vehicle = 6;
+  double vehicle_speed = 7;
+  double radar_maxSpeed = 8;
+  double fine_amount = 9;
+}
+message Vehicle{
+  int32 id = 1;
+  int32 registration_plate_number = 2;
+  string brand = 3;
+  int32 tax_horsepower = 4;
+  int32 vehicle_model = 5;
+  Owner owner = 6;
+}
+
+message Owner{
+  int32 id = 1;
+  string name = 2;
+  string birthDate = 3;
+  string email = 4;
+  repeated Vehicle vehicles = 5;
+}
+
+service RadarGrpcService{
+  rpc generateInfraction(InfractionRequest) returns (Infraction);
+
+}
+
+message InfractionRequest{
+  int32 radarId = 1;
+  int32 vehicleId = 2;
+  double vehicle_speed = 3;
+}
+
+
+

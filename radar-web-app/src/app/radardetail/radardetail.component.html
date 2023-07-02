@@ -1,0 +1,117 @@
+<div class="container">
+  <br>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-start">
+      <h4 class="label custom-label"><i class="bi bi-card-list"></i> Radar's Infraction List</h4>
+    </div>
+  </div>
+  <br>
+  <table class="table" >
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th> Date</th>
+      <th>Registration Plate Number</th>
+      <th>Vehicle's speed</th>
+      <th>Fine Amount</th>
+      <th>Details</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor="let i of radar.infractions">
+      <td>{{i.id}}</td>
+      <td>{{i.date}}</td>
+      <td>{{i.vehicle.registration_plate_number}}</td>
+      <td>{{i.vehicle_speed | number:'1.0-0'}} Km/h</td>
+      <td>{{i.fine_amount | number:'1.0-0'}} Dhs </td>
+      <td>
+        <button class ="btn detail-button"(click)="openForm(i)" > <i class="bi bi-search"></i></button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="deleteInfraction(i)" ><i class="bi bi-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="popup card" *ngIf="isFormOpen && infractiondetail != null">
+    <div class="card-body">
+      <h4 class="bold-label custom-label">Infraction details</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="text" class="form-control" id="date" [(ngModel)]="infractiondetail.date" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="fineAmount">Fine Amount</label>
+            <input type="text" class="form-control" id="fineAmount" [ngModel]="(infractiondetail.fine_amount| number:'1.0-0')+' Dhs'" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicleRegNumber">Registration plate number</label>
+            <input type="text" class="form-control" id="vehicleRegNumber" [(ngModel)]="infractiondetail.vehicle.registration_plate_number" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicleSpeed">Vehicle's speed</label>
+            <input type="text" class="form-control" id="vehicleSpeed" [ngModel]="(infractiondetail.vehicle_speed| number:'1.0-0')+' Km/h'" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="radarMaxSpeed">Radar's Maximum speed</label>
+            <input type="text" class="form-control" id="radarMaxSpeed" [ngModel]="(infractiondetail.radar_maxSpeed)+' Km/h'" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicleBrand">Brand</label>
+            <input type="text" class="form-control" id="vehicleBrand" [(ngModel)]="infractiondetail.vehicle.brand" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="tax_horsepower">Tax Horse Power</label>
+            <input type="text" class="form-control" id="tax_horsepower" [(ngModel)]="infractiondetail.vehicle.tax_horsepower" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicle_model">Model</label>
+            <input type="text" class="form-control" id="vehicle_model" [(ngModel)]="infractiondetail.vehicle.vehicle_model" disabled>
+          </div>
+        </div>
+        <br>
+        <br>
+        <h5 class="bold-label custom-label"><i class="bi bi-person-fill"></i> Owner's details</h5>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ownerName">Name</label>
+            <input type="text" class="form-control" id="ownerName" [(ngModel)]="infractiondetail.vehicle.owner.name" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="birthDate">Birthdate</label>
+            <input type="text" class="form-control" id="birthDate" [(ngModel)]="infractiondetail.vehicle.owner.birthDate" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" [(ngModel)]="infractiondetail.vehicle.owner.email" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-transparent">
+      <button class="btn btn-outline-primary" (click)="closeForm()"><i class="bi bi-x"></i> Close</button>
+    </div>
+  </div>
+</div>
